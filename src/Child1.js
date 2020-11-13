@@ -1,5 +1,5 @@
 import React from "react";
-import {Route,withRouter,Switch} from "react-router-dom";
+import { Route,withRouter,Switch } from "react-router-dom";
 class Child1 extends React.Component{
     constructor(props){
         super(props);
@@ -7,9 +7,10 @@ class Child1 extends React.Component{
     }
     componentDidMount()
     {
+        console.log(this.props.match.params)
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.props.match.params.id}&appid=989aeb61637efc432e57044c6c5bd577`).then(
         (response)=>{
-            return response.json()}).then((json)=>{this.setState({item:json.weather[0].description})})
+            return response.json()}).then((result)=>{this.setState({item:result.weather[0].description},()=>console.log(result))})
             
     }
     render()
